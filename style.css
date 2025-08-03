@@ -1,3 +1,9 @@
+/* css variables */
+
+:root {
+  --size-input: 16;
+}
+
 /* global generic styles */
 
 html {
@@ -27,8 +33,8 @@ body {
 }
 
 .div-container {
-  width: 16rem;
-  height: 16rem;
+  width: 320px;
+  height: 320px;
   padding: 0;
   margin: 0;
   display: flex;
@@ -39,8 +45,8 @@ body {
 }
 
 .pixel {
-  width: 1rem;
-  height: 1rem;
+  width: calc(100% / var(--size-input));
+  height: calc(100% / var(--size-input));
   padding: 0;
   margin: 0;
   background-color: hsl(0, 0%, 88%);
