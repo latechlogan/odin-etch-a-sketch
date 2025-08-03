@@ -1,6 +1,7 @@
 function createGrid(size = 16) {
   for (let i = 0; i < size * size; i++) {
     let div = document.createElement("div");
+    div.classList.add("pixel");
     document.querySelector(".div-container").appendChild(div);
   }
 }
