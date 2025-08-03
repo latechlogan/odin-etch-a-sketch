@@ -8,3 +8,9 @@ function createGrid(size = 16) {
 document.addEventListener("DOMContentLoaded", () => {
   createGrid();
 });
+
+const container = document.querySelector(".div-container");
+
+container.addEventListener("mouseover", (e) => {
+  e.target.setAttribute("style", "background: #888888");
+});
