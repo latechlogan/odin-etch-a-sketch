@@ -26,6 +26,11 @@ function createNewCanvas() {
   }
 }
 
+function resetCanvas() {
+  const pixels = document.querySelectorAll(".pixel");
+  pixels.forEach((pixel) => pixel.classList.remove("dark"));
+}
+
 function getUserInput() {
   const input = prompt("Please enter a grid size:", DEFAULT_GRID_SIZE);
 
@@ -42,7 +47,7 @@ function getUserInput() {
 }
 
 function handlePixelHover(event) {
-  event.target.setAttribute("style", `background: ${HOVER_COLOR}`);
+  event.target.classList.add("dark");
 }
 
 // EVENT LISTENERS
@@ -53,6 +58,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.querySelector("#new-canvas").addEventListener("click", () => {
   createNewCanvas();
+});
+
+document.querySelector("#reset-canvas").addEventListener("click", () => {
+  resetCanvas();
 });
 
 document.querySelector(".div-container").addEventListener("mouseover", (e) => {
