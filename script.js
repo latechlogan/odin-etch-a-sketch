@@ -28,7 +28,19 @@ function createNewCanvas() {
 
 function resetCanvas() {
   const pixels = document.querySelectorAll(".pixel");
-  pixels.forEach((pixel) => pixel.classList.remove("dark"));
+  setTimeout(() => {
+    pixels.forEach((pixel) => pixel.classList.remove("dark"));
+  }, 410);
+
+  animateCanvas();
+}
+
+function animateCanvas() {
+  const divContainer = document.querySelector(".div-container");
+  divContainer.classList.add("animate");
+  setTimeout(() => {
+    divContainer.classList.remove("animate");
+  }, 820);
 }
 
 function getUserInput() {
