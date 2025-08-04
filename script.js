@@ -1,4 +1,11 @@
-function createGrid(size = 16) {
+// CONFIG
+
+const DEFAULT_GRID_SIZE = 16;
+const HOVER_COLOR = "hsla(0, 0%, 56%, 1)";
+
+// MAIN FUNCTIONS
+
+function createCanvas(size = DEFAULT_GRID_SIZE) {
   const divContainer = document.querySelector(".div-container");
   divContainer.innerHTML = "";
 
@@ -7,32 +14,47 @@ function createGrid(size = 16) {
     div.classList.add("pixel");
     divContainer.appendChild(div);
   }
+
+  document.documentElement.style.setProperty("--size-input", size);
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  createGrid();
-});
-
-const container = document.querySelector(".div-container");
-
-container.addEventListener("mouseover", (e) => {
-  e.target.setAttribute("style", "background: #888888");
-});
 
 function createNewCanvas() {
   let newSize = getUserInput();
-  createGrid(newSize);
-  passUserInput(newSize);
+  if (newSize !== null) {
+    // proceed if user didn't cancel
+    createCanvas(newSize);
+  }
 }
 
 function getUserInput() {
-  return +prompt("Please enter a grid size:", 16);
+  const input = prompt("Please enter a grid size:", DEFAULT_GRID_SIZE);
+
+  if (input === null) return null; // user cancelled
+
+  const size = +input;
+
+  if (isNaN(size) || size < 1 || size > 100) {
+    alert("Please enter a number between 1 and 100.");
+    return getUserInput(); // try again
+  }
+
+  return size;
 }
+
+function handlePixelHover(event) {
+  event.target.setAttribute("style", `background: ${HOVER_COLOR}`);
+}
+
+// EVENT LISTENERS
+
+document.addEventListener("DOMContentLoaded", () => {
+  createCanvas();
+});
 
 document.querySelector("#new-canvas").addEventListener("click", () => {
   createNewCanvas();
 });
 
-function passUserInput(param) {
-  document.documentElement.style.setProperty("--size-input", param);
-}
+document.querySelector(".div-container").addEventListener("mouseover", (e) => {
+  handlePixelHover(e);
+});
