@@ -62,3 +62,7 @@ body {
   margin: 0;
   background-color: hsl(0, 0%, 88%);
 }
+
+.pixel.dark {
+  background-color: hsl(0, 0%, 56%);
+}
